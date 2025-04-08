@@ -1,0 +1,13 @@
+
+#1. Alegem o imagnie de baza
+FROM ubuntu:22.04
+
+#2.Actualizam lista de pachete si instalam Nginx
+RUN apt update && apt install -y nginx
+
+#3.Specificam expunerea la portul 80
+EXPOSE 80
+
+#4.Pornim Nginx 
+CMD ["nginx", "-g", "daaemon off;"]
+
