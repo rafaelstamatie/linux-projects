@@ -1,4 +1,11 @@
-#!bin/bash
+#!bin/bas
+
+#Acest script:
+#-Initializeaza un cluster docker swarm
+#-Afiseaza comanda de join pentru workers
+#-Creeaza o retea overay
+#-Deploy Mysql + Wordpress
+#-Verifica starea serviciilor
 
 hostname -I
 manager_ip="192.168.56.10"
