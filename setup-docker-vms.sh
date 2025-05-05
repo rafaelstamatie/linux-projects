@@ -9,12 +9,6 @@
  if [ "$option" = "1" ]; then
      echo "Setting up Mysql"
 
-     sudo apt update && sudo apt upgrade -y
-     sudo apt install -y docker.io
-
-     sudo systemctl start docker
-     sudo systemctl enable docker
-
     ip_vm_mysql=$(hostname -I | awk '{print $1}')
 
     docker run -d --name mysql-container \
@@ -36,11 +30,6 @@
 	 exit 1
      fi
 
-     sudo apt update && sudo apt upgrade -y
-     sudo apt install -y docker.io lynx
-
-     sudo systemctl start docker 
-     sudo systemctl enable docker 
 
      ip_vm_wp=$(hostname -I | awk '{print $1}')
 
