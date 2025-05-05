@@ -1,4 +1,4 @@
-#!bin/bash
+#!/bin/bash
 
 
  echo "What do you want to configure?"
