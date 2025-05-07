@@ -1,23 +1,17 @@
-#!bin/bas
 
-#Acest script:
-#-Initializeaza un cluster docker swarm
-#-Afiseaza comanda de join pentru workers
-#-Creeaza o retea overay
-#-Deploy Mysql + Wordpress
-#-Verifica starea serviciilor
+#!/bin/bash
 
-hostname -I
-manager_ip="192.168.56.10"
+manager_ip=$(hostname -I | awk '{print $1}')
+
+
 docker swarm init --advertise-addr "$manager_ip"
+
+
 swarm_token=$(docker swarm join-token -q worker)
 
-#Ne logam pe fiecare worker avand editat .ssh/config
-echo "Pe fiecare worker,ne conectam cu shh vm1/vm2"
+# SSH into each worker node(ssh vm1/vm2 if .ssh/config is set up)
 echo "docker swarm join --token$swarm_token $manager_ip:2377"
-
-
-read -p
+read -p "Press enter after all workers have joined the swarm."
 
 
 docker node ls
@@ -31,14 +25,15 @@ docker service create --name wp-mysql --network wordpress-network \
    -e MYSQL_PASSWORD=wppass \
    mysql:5.7
 
-docker service create --name wordpress --network wordpress-network \
+
+docker service create --name wordpress  --network wordpress-network \
   -p 4020:80 \
-  -e WORDPRESS_DB_HOST=WP-MYSQL:3306 \
+  -e WORDPRESS_DB_HOST=wp:3306 \
   -e WORDPRESS_DB_USER=wpuser \
   -e WORDPRESS_DB_PASSWORD=wppass \
   -e WORDPRESS_DB_NAME=wordpress \
   wordpress:latest
 
 docker service ps wordpress
-echo "Wordpress este accesibil la,http://$manager_ip:4020"
+echo "Wordpress is available at http://$manager_ip:4020"
 
