@@ -35,8 +35,7 @@ build/
 *.old
 *.orig
 
-# Ignore Kind or Minikube specific output (optional)
-kind-config.yaml
-minikube/
+../backup_old_files/
+*.log
+*.tmp
 
->>>>>>> 6f7782e (Add fixed script and restructure it)
