@@ -1,1 +1,41 @@
+<<<<<<< HEAD
 * .env
+=======
+# Ignore temporary files and system files
+*.log
+*.tmp
+*.swp
+.DS_Store
+Thumbs.db
+
+# Ignore kubeconfigs or sensitive cluster data
+.kube/
+*.kubeconfig
+
+# Ignore IDE/editor settings
+.vscode/
+.idea/
+*.code-workspace
+
+# Ignore node_modules (if using JS tooling)
+node_modules/
+
+# Ignore Docker-related files
+**/__pycache__/
+*.pyc
+docker-compose.override.yml
+.env
+
+# Ignore build artifacts
+dist/
+build/
+
+# Ignore local Kubernetes YAML backups or generated files
+*.bak
+*.old
+*.orig
+
+../backup_old_files/
+*.log
+*.tmp
+
